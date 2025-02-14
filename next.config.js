@@ -4,6 +4,7 @@ const nextConfig = {
   basePath: process.env.NEXT_PUBLIC_BASE_PATH,
   output: process.env.NEXT_BUILD_TARGET === 'gh-pages' ? 'export' : undefined,
   images: {
+    unoptimized: process.env.NEXT_BUILD_TARGET === 'gh-pages',
     remotePatterns: [
       {
         // protocol: 'https',
