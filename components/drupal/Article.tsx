@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { absoluteUrl, formatDate } from "@/lib/utils"
 import type { DrupalNode } from "next-drupal"
-
+import { Body } from "@/components/content/body"
 interface ArticleProps {
   node: DrupalNode
 }
@@ -36,10 +36,7 @@ export function Article({ node, ...props }: ArticleProps) {
         </figure>
       )}
       {node.body?.processed && (
-        <div
-          dangerouslySetInnerHTML={{ __html: node.body?.processed }}
-          className="mt-6 font-serif text-xl leading-loose prose"
-        />
+        <Body value={node.body?.processed} className="mt-6 font-serif text-xl leading-loose prose" />
       )}
     </article>
   )

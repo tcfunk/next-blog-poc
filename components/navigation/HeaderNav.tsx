@@ -5,15 +5,13 @@ export function HeaderNav() {
     <header>
       <div className="container flex items-center justify-between py-6 mx-auto">
         <Link href="/" className="text-2xl font-semibold no-underline">
-          Next.js for Drupal
+          WebFirst Engineering
         </Link>
         <Link
-          href="https://next-drupal.org/docs"
-          target="_blank"
-          rel="external"
+          href="/"
           className="hover:text-blue-600"
         >
-          Read the docs
+          Blog
         </Link>
       </div>
     </header>
