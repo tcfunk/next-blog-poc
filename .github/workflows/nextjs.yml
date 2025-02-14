@@ -67,6 +67,9 @@ jobs:
       - name: Install dependencies
         run: yarn
 
+      - name: Remove api routes
+        run: rm -rf app/api
+
       - name: Build with Next.js
         run: yarn build
         env:
