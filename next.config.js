@@ -13,4 +13,9 @@ const nextConfig = {
   },
 }
 
+if (process.env.BUILD_TARGET === 'gh-pages') {
+  nextConfig.output = 'export'
+  nextConfig.basePath = process.env.NEXT_PUBLIC_BASE_PATH
+}
+
 module.exports = nextConfig
