@@ -24,6 +24,12 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  NEXT_IMAGE_DOMAIN: ${{ vars.NEXT_IMAGE_DOMAIN }}
+  NEXT_PUBLIC_DRUPAL_BASE_URL: ${{ vars.NEXT_PUBLIC_DRUPAL_BASE_URL }}
+  DRUPAL_CLIENT_ID: ${{ secrets.DRUPAL_CLIENT_ID }}
+  DRUPAL_CLIENT_SECRET: ${{ secrets.DRUPAL_CLIENT_SECRET }}
+
 jobs:
   # Build job
   build:
