@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH,
+  output: process.env.NEXT_BUILD_TARGET === 'gh-pages' ? 'export' : undefined,
   images: {
     remotePatterns: [
       {
@@ -11,11 +13,6 @@ const nextConfig = {
       },
     ],
   },
-}
-
-if (process.env.BUILD_TARGET === 'gh-pages') {
-  nextConfig.output = 'export'
-  nextConfig.basePath = process.env.NEXT_PUBLIC_BASE_PATH
 }
 
 module.exports = nextConfig

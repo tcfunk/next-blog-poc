@@ -71,7 +71,7 @@ jobs:
         run: yarn build
         env:
           # setting variables
-          BUILD_TARGET: ${{ vars.BUILD_TARGET }}
+          NEXT_BUILD_TARGET: ${{ vars.NEXT_BUILD_TARGET }}
           NEXT_PUBLIC_DRUPAL_BASE_URL: ${{ vars.NEXT_PUBLIC_DRUPAL_BASE_URL }}
           NEXT_IMAGE_DOMAIN: ${{ vars.NEXT_IMAGE_DOMAIN }}
           NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH }}
