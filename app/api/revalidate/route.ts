@@ -6,9 +6,9 @@ import type { NextRequest } from "next/server"
 
 async function handler(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
-  const path = searchParams.get("path")
   const tags = searchParams.get("tags")
   const secret = searchParams.get("secret")
+  const path = searchParams.has('path') ? searchParams.get("path") : searchParams.get('slug')
 
   // Validate secret.
   if (secret !== process.env.DRUPAL_REVALIDATE_SECRET) {
