@@ -1,6 +1,9 @@
 import { revalidatePath, revalidateTag } from "next/cache"
 import type { NextRequest } from "next/server"
 
+// export const dynamic = 'force-static'
+// export const revalidate = 0
+
 async function handler(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const path = searchParams.get("path")

@@ -7,6 +7,8 @@ import { drupal } from "@/lib/drupal"
 import type { Metadata, ResolvingMetadata } from "next"
 import type { DrupalNode, JsonApiParams } from "next-drupal"
 
+const media_include = process.env.NEXT_MEDIA_INCLUDE
+
 async function getNode(slug: string[]) {
   const path = `/${slug.join("/")}`
 
@@ -30,7 +32,7 @@ async function getNode(slug: string[]) {
   const tag = `${translatedPath.entity.type}:${translatedPath.entity.id}`
 
   if (type === "node--article") {
-    params.include = "field_image,uid"
+    params.include = `${media_include},uid`
   }
 
   const resource = await drupal.getResource<DrupalNode>(type, uuid, {
@@ -87,27 +89,16 @@ export async function generateMetadata(
 const RESOURCE_TYPES = ["node--page", "node--article"]
 
 export async function generateStaticParams(): Promise<NodePageParams[]> {
-  const resources = await drupal.getResourceCollectionPathSegments(
-    RESOURCE_TYPES,
-    {
-      // The pathPrefix will be removed from the returned path segments array.
-      // pathPrefix: "/blog",
-      // The list of locales to return.
-      // locales: ["en", "es"],
-      // The default locale.
-      // defaultLocale: "en",
-    }
-  )
+
+  const resources = await drupal.getResourceCollection('node--article', {
+    params: {
+      "filter[status]": 1,
+    },
+  })
 
   return resources.map((resource) => {
-    // resources is an array containing objects like: {
-    //   path: "/blog/some-category/a-blog-post",
-    //   type: "node--article",
-    //   locale: "en", // or `undefined` if no `locales` requested.
-    //   segments: ["blog", "some-category", "a-blog-post"],
-    // }
     return {
-      slug: resource.segments,
+      slug: resource.segments
     }
   })
 }
