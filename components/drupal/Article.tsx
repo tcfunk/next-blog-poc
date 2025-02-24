@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { absoluteUrl, formatDate } from "@/lib/utils"
+import { absoluteUrl, formatDate, getNodeImageUrl, getNodeImageAlt, getNodeImageTitle  } from "@/lib/utils"
 import type { DrupalNode } from "next-drupal"
 import { Body } from "@/components/content/body"
 interface ArticleProps {
@@ -22,15 +22,15 @@ export function Article({ node, ...props }: ArticleProps) {
       {node.field_image && (
         <figure>
           <Image
-            src={absoluteUrl(node.field_image.uri.url)}
+            src={absoluteUrl(getNodeImageUrl(node))}
             width={768}
             height={400}
-            alt={node.field_image.resourceIdObjMeta.alt || ""}
+            alt={getNodeImageAlt(node) || ""}
             priority
           />
-          {node.field_image.resourceIdObjMeta.title && (
+          {getNodeImageTitle(node) && (
             <figcaption className="py-2 text-sm text-center text-gray-600">
-              {node.field_image.resourceIdObjMeta.title}
+              {getNodeImageTitle(node)}
             </figcaption>
           )}
         </figure>

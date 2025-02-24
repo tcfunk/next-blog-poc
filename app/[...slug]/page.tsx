@@ -65,6 +65,8 @@ type NodePageProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
+export const dynamic = 'force-static'
+
 export async function generateMetadata(
   props: NodePageProps,
   parent: ResolvingMetadata

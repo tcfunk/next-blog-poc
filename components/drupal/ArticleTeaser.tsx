@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { Link } from "@/components/navigation/Link"
-import { absoluteUrl, formatDate } from "@/lib/utils"
-import type { DrupalNode } from "next-drupal"
+import { absoluteUrl, formatDate, getNodeImageAlt, getNodeImageUrl } from "@/lib/utils"
+import { DrupalNode } from "next-drupal"
 
 interface ArticleTeaserProps {
   node: DrupalNode
@@ -25,10 +25,10 @@ export function ArticleTeaser({ node, ...props }: ArticleTeaserProps) {
       {node.field_image && (
         <figure className="my-4">
           <Image
-            src={absoluteUrl(node.field_image.uri.url)}
+            src={absoluteUrl(getNodeImageUrl(node))}
             width={768}
             height={480}
-            alt={node.field_image.resourceIdObjMeta.alt}
+            alt={getNodeImageAlt(node)}
           />
         </figure>
       )}
